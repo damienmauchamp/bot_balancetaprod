@@ -18,7 +18,7 @@ bot/
 
 ## Node dependencies
 
-Before configuring the bot we'll need to install the dependencies, cd into the project folder with `cd tw*` in the terminal this will move you to `:~/workspace/twitter-bot-bootstrap (master) $ ` from the terminal enter:
+Before configuring the bot we'll need to install the dependencies, from the terminal enter:
 
 ```shell
 npm install
@@ -36,6 +36,7 @@ Here is the `dependencies` list in the `package,json` file:
 ```
 
 ### Configuring the bot
+
 **Make a `.env` file:** make a file named `.env` do it with the terminal with the following command:
 
 ```shell
@@ -58,3 +59,5 @@ The file structure should look as follows:
   # options
   OPT_RETWEET_INTERVAL=1
 ```
+
+The `OPT_RETWEET_INTERVAL` value is the interval (in minutes) between queries.
