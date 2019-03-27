@@ -1,0 +1,19 @@
+{
+  "name": "balancetaprod",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/damienmauchamp/bot_balancetaprod.git"
+  },
+  "author": "Damien Mauchamp <damienmauchamp@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damienmauchamp/bot_balancetaprod/issues"
+  },
+  "homepage": "https://github.com/damienmauchamp/bot_balancetaprod#readme"
+}
