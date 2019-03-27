@@ -4,7 +4,8 @@
   "description": "TODO",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/damienmauchamp/bot_balancetaprod/issues"
   },
-  "homepage": "https://github.com/damienmauchamp/bot_balancetaprod#readme"
+  "homepage": "https://github.com/damienmauchamp/bot_balancetaprod#readme",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "twit": "^2.2.11"
+  }
 }
