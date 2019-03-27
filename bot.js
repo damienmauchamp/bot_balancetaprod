@@ -7,7 +7,7 @@ var lastId = lastRetweetedId = 0;
 var lastTweetDate = lastRetweetedDate = new Date("2019-03-20");
 
 var containsEmail = function (status) { 
-    return /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(status.text);
+	return /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(status.text);
 }
 
 var retweet = function() {
@@ -19,14 +19,16 @@ var retweet = function() {
 	}
 
 	// Initiate your search using the above paramaters
-	Twitter.get('search/tweets', params, function(err, data, response) {+
+	Twitter.get('search/tweets', params, function(err, data, response) {
 
-		console.log("\n\n\nGET search/tweets");
-		console.log(new Date() + "\n");
-		console.log("lastId:", lastId);
-		console.log("lastRetweetedId:", lastRetweetedId);
-		console.log("lastTweetDate:", lastTweetDate);
-		console.log("lastRetweetedDate:", lastRetweetedDate);
+		if (process.env.ENVIRONMENT === "dev") {
+			console.log("\n\n\nGET search/tweets");
+			console.log(new Date() + "\n");
+			console.log("lastId:", lastId);
+			console.log("lastRetweetedId:", lastRetweetedId);
+			console.log("lastTweetDate:", lastTweetDate);
+			console.log("lastRetweetedDate:", lastRetweetedDate);
+		}
 
 		// If there is no error, proceed
 		if (!err){
@@ -53,16 +55,20 @@ var retweet = function() {
 								let username = response.user.screen_name;
 								let tweetId = response.id_str;
 
-								console.log('Retweeted:', "https://twitter.com/" + username + "/status/" + tweetId);
+								if (process.env.ENVIRONMENT === "dev") {
+									console.log('Retweeted:', "https://twitter.com/" + username + "/status/" + tweetId);
+								}
 							} else {
-								if (!err.code === 327) { // already retweeted
-									console.log("[" + err.code + "]", err);
-								} else {
-									console.log("[" + err.code + "] Already retweeted: https://twitter.com/" + statuses[i].user.screen_name + "/status/" + statuses[i].id_str);
+								if (process.env.ENVIRONMENT === "dev") {
+									if (!err.code === 327) { // already retweeted
+										console.log("[" + err.code + "]", err);
+									} else {
+										console.log("[" + err.code + "] Already retweeted: https://twitter.com/" + statuses[i].user.screen_name + "/status/" + statuses[i].id_str);
+									}
 								}
 							}
-								lastRetweetedId = lastId;
-								lastRetweetedDate = lastTweetDate;
+							lastRetweetedId = lastId;
+							lastRetweetedDate = lastTweetDate;
 						});
 					}
 				} else {
