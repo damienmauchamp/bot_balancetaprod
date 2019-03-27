@@ -21,11 +21,12 @@ var retweet = function() {
 	// Initiate your search using the above paramaters
 	Twitter.get('search/tweets', params, function(err, data, response) {+
 
-		console.log("\n\nGET search/tweets");
-		console.log("lastId", lastId);
-		console.log("lastRetweetedId", lastRetweetedId);
-		console.log("lastTweetDate", lastTweetDate);
-		console.log("lastRetweetedDate", lastRetweetedDate);
+		console.log("\n\n\nGET search/tweets");
+		console.log(new Date() + "\n");
+		console.log("lastId:", lastId);
+		console.log("lastRetweetedId:", lastRetweetedId);
+		console.log("lastTweetDate:", lastTweetDate);
+		console.log("lastRetweetedDate:", lastRetweetedDate);
 
 		// If there is no error, proceed
 		if (!err){
@@ -51,8 +52,6 @@ var retweet = function() {
 							if (!err) {
 								let username = response.user.screen_name;
 								let tweetId = response.id_str;
-								lastRetweetedId = lastId;
-								lastRetweetedDate = lastTweetDate;
 
 								console.log('Retweeted:', "https://twitter.com/" + username + "/status/" + tweetId);
 							} else {
@@ -62,6 +61,8 @@ var retweet = function() {
 									console.log("[" + err.code + "] Already retweeted: https://twitter.com/" + statuses[i].user.screen_name + "/status/" + statuses[i].id_str);
 								}
 							}
+								lastRetweetedId = lastId;
+								lastRetweetedDate = lastTweetDate;
 						});
 					}
 				} else {
