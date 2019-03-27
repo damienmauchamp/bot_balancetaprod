@@ -30,10 +30,10 @@ var retweet = function() {
 		// If there is no error, proceed
 		if (!err){
 
-			var statuses = data.statuses.reverse();
+			var statuses = data.statuses;
 
 			// Loop through the returned tweets
-			for (let i = 0; i < statuses.length; i++) {
+			for (let i = statuses.length - 1; i >= 0 ; i--) {
 
 				// Get the tweet Id from the returned data
 				let id = { id: statuses[i].id_str }
