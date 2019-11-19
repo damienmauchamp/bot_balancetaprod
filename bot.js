@@ -13,7 +13,7 @@ var containsEmail = function (status) {
 var retweet = function() {
 
 	var params = {
-		q: '(envoi OR envoy OR envoyer OR envoyez OR envoyé OR envoyés OR cherche OR cherches OR cherché OR cherchés OR chercher OR cherchez) AND (beat OR beats OR prod OR prods) AND @',  // REQUIRED
+		q: '(envoi OR envoie OR envoies OR envois OR envoit OR envoiez OR envoy OR envoyer OR envoyez OR envoyé OR envoyés OR cherche OR cherches OR cherché OR cherchés OR chercher OR cherchez OR cherchai OR cherchais OR cherchait OR cherchaient OR beatmaker OR beatmakers) AND (beat OR beats OR prod OR prods OR typebeat OR typebeats) AND @',  // REQUIRED
 		count: 50,
 		result_type: 'recent'
 	}
@@ -21,14 +21,19 @@ var retweet = function() {
 	// Initiate your search using the above paramaters
 	Twitter.get('search/tweets', params, function(err, data, response) {
 
-		if (process.env.ENVIRONMENT === "dev") {
-			console.log("\n\n\nGET search/tweets");
+
+		//if (process.env.ENVIRONMENT === "dev") {
+			console.log("\n\n\n=====================");
+			console.log("GET search/tweets");
+			console.log({params: params, response: response});
+			console.log("=====================");
 			console.log(new Date() + "\n");
 			console.log("lastId:", lastId);
 			console.log("lastRetweetedId:", lastRetweetedId);
 			console.log("lastTweetDate:", lastTweetDate);
 			console.log("lastRetweetedDate:", lastRetweetedDate);
-		}
+			console.log("=====================");
+		//}
 
 		// If there is no error, proceed
 		if (!err){
@@ -51,6 +56,8 @@ var retweet = function() {
 
 						// Try to Favorite the selected Tweet
 						Twitter.post('statuses/retweet', id, function(err, response) {
+							console.log("POST statuses/retweet");
+							console.log({params: {id: id}, response: response});
 							if (!err) {
 								let username = response.user.screen_name;
 								let tweetId = response.id_str;
@@ -76,8 +83,10 @@ var retweet = function() {
 				}
 			}
 		} else {
-			//console.log(err);
+			console.log(err);
 		}
+		console.log("=====================");
+		console.log("=====================");
 	});
 }
 
