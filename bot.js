@@ -12,6 +12,12 @@ var containsEmail = function (status) {
 
 var retweet = function() {
 
+	console.log("\n\n=====================");
+	console.log("=====================");
+	console.log("running... retweet()");
+	console.log("=====================");
+	console.log("=====================");
+
 	var params = {
 		q: '(envoi OR envoie OR envoies OR envois OR envoit OR envoiez OR envoy OR envoyer OR envoyez OR envoyé OR envoyés OR cherche OR cherches OR cherché OR cherchés OR chercher OR cherchez OR cherchai OR cherchais OR cherchait OR cherchaient OR beatmaker OR beatmakers) AND (beat OR beats OR prod OR prods OR typebeat OR typebeats) AND @',  // REQUIRED
 		count: 50,
