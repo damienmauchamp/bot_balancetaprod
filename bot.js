@@ -46,7 +46,7 @@ var retweet = function() {
 		// If there is no error, proceed
 		if (!err){
 
-			var statuses = data.statuses;
+			var statuses = data.statuses || [];
 
 			// Loop through the returned tweets
 			for (let i = statuses.length - 1; i >= 0 ; i--) {
