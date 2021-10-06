@@ -3,12 +3,14 @@ var config = require('./config.js');
 
 var Twitter = new twit(config);
 
-var lastId = lastRetweetedId = 0;
-var lastTweetDate = lastRetweetedDate = new Date("2019-03-20");
+var lastId = 0,
+	lastRetweetedId = 0;
+var lastTweetDate = new Date("2019-03-20"),
+	lastRetweetedDate = new Date("2019-03-20");
 
 var containsEmail = function (status) { 
 	return /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(status.text);
-}
+};
 
 var retweet = function() {
 
@@ -19,11 +21,11 @@ var retweet = function() {
 	console.log("=====================");
 
 	var params = {
-		q: '(envoi OR envoie OR envoies OR envois OR envoit OR envoiez OR envoy OR envoyer OR envoyez OR envoyé OR envoyés OR cherche OR cherches OR cherché OR cherchés OR chercher OR cherchez OR cherchai OR cherchais OR cherchait OR cherchaient OR beatmaker OR beatmakers) AND (beat OR beats OR prod OR prods OR typebeat OR typebeats) AND @',  // REQUIRED
+		q: '(envoi OR envoie OR envoies OR envois OR envoit OR envoiez OR envoy OR envoyer OR envoyez OR envoyé OR envoyés OR cherche OR cherches OR cherché OR cherchés OR chercher OR cherchez OR cherchai OR cherchais OR cherchait OR cherchaient OR beatmaker OR beatmakers OR send) AND (beat OR beats OR prod OR prods OR typebeat OR typebeats) AND @',  // REQUIRED
 		count: 50,
 		result_type: 'recent'
-	}
-
+	};
+	
 	// Initiate your search using the above paramaters
 	Twitter.get('search/tweets', params, function(err, data, response) {
 
